@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+    <title>Bol Carter Portfolio</title>
+    <style>
         body {
-            /* خلفية متدرجة تبرز تأثير الزجاج الشفاف */
             background: linear-gradient(135deg, #101B3A, #2563eb, #1e3a8a);
             background-attachment: fixed;
             color: #EFEDDA;
@@ -22,74 +16,34 @@
             align-items: center;
             padding: 40px 20px;
         }
-
-        header {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
         .section {
             margin: 20px auto;
             max-width: 800px;
             width: 100%;
             padding: 30px;
-            /* تأثير Glassmorphism (واجهة الآيفون الشفافة) */
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .section:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.02);
-        }
-
-        .section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #EFEDDA;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 5px;
-        }
-
-        .section p {
-            opacity: 0.7;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        /* تنسيق زر التشفير */
-        .encrypt-btn {
-            margin-top: 30px;
-            padding: 12px 25px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            backdrop-filter: blur(5px);
             transition: 0.3s;
         }
-
-        .encrypt-btn:hover {
-            background: white;
-            color: #101B3A;
+        .secret-input {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+        }
+        .btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -101,37 +55,27 @@
     </header>
 
     <div class="section">
-        <h2>Who is me</h2>
-        <p>love to develope software without looking to any rule</p>
+        <h2 id="title-who">Who is me?</h2>
+        <p>Looking for the truth in the code and space-time.</p>
+        <input type="password" id="secretKey" class="secret-input" placeholder="Enter Secret Key">
+        <br>
+        <button class="btn" onclick="revealIdentity()">Unlock Identity</button>
     </div>
-
-    <div class="section">
-        <h2>What i learn?</h2>
-        <p>multible things like C++ logic design and other things</p>
-    </div>
-
-    <div class="section">
-        <h2>my digital hobbies</h2>
-        <p>Graphic design coding and chess engine devoloping</p>
-    </div>
-
-    <div class="section">
-        <h2>My products</h2>
-        <p>just building a simple chess engine</p>
-    </div>
-
-    <button class="encrypt-btn" onclick="runEncryption()">Test Encryption</button>
 
     <script>
-        function runEncryption() {
+        function revealIdentity() {
+            const key = document.getElementById('secretKey').value;
             const name = document.getElementById('main-name');
-            // تشفير بسيط (Base64) لتحويل الاسم إلى رموز
-            let encoded = btoa(name.innerText);
-            name.innerText = "ENC_" + encoded.substring(0, 10);
-            name.style.color = "#FFD700"; // لون ذهبي للإشارة للتشفير
-            alert("Success! The data is now encrypted. Try to find the key in the code!");
+            // كلمة السر هي اسمك بالإنجليزية
+            if (key === "Anas") {
+                name.innerText = "Anas Al-Taie";
+                name.style.color = "#FFD700";
+                document.getElementById('title-who').innerText = "Identity Confirmed";
+                alert("Access Granted: Welcome Anas!");
+            } else {
+                alert("Access Denied: Wrong Key!");
+            }
         }
     </script>
-
 </body>
 </html>
