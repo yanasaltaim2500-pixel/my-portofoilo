@@ -3,77 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bol Carter Portfolio</title>
+    <title>Anas | Software Engineering</title>
     <style>
         body {
-            background: linear-gradient(135deg, #101B3A, #2563eb, #1e3a8a);
+            background: linear-gradient(135deg, #0f172a, #1e40af, #1e3a8a);
             background-attachment: fixed;
-            color: #EFEDDA;
-            font-family: 'Segoe UI', sans-serif;
-            min-height: 100vh;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 40px 20px;
+            min-height: 100vh;
         }
-        .section {
-            margin: 20px auto;
-            max-width: 800px;
-            width: 100%;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
-            border-radius: 24px;
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
+            border-radius: 25px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .secret-input {
-            margin-top: 20px;
+        #main-name { font-size: 3rem; margin-bottom: 10px; transition: 0.5s; }
+        .hidden-content { display: none; margin-top: 20px; text-align: left; animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .input-box {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
             padding: 10px;
-            border-radius: 10px;
-            border: none;
-            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             color: white;
             text-align: center;
+            margin: 10px 0;
+            outline: none;
         }
-        .btn {
-            margin-top: 10px;
-            padding: 10px 20px;
-            border-radius: 10px;
-            border: 1px solid white;
-            background: transparent;
+        .unlock-btn {
+            background: #3b82f6;
             color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 12px;
             cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
         }
+        .unlock-btn:hover { background: #60a5fa; transform: scale(1.05); }
+        .info-tag { font-weight: bold; color: #60a5fa; }
     </style>
 </head>
 <body>
 
-    <header>
+    <div class="glass-panel">
         <h1 id="main-name">Bol Carter</h1>
-        <p>Software Developer</p>
-    </header>
+        <p id="sub-title">System Status: <span style="color: #ef4444;">Locked</span></p>
+        
+        <div id="lock-screen">
+            <input type="password" id="passkey" class="input-box" placeholder="Enter Access Key">
+            <br>
+            <button class="unlock-btn" onclick="checkKey()">Unlock Identity</button>
+        </div>
 
-    <div class="section">
-        <h2 id="title-who">Who is me?</h2>
-        <p>Looking for the truth in the code and space-time.</p>
-        <input type="password" id="secretKey" class="secret-input" placeholder="Enter Secret Key">
-        <br>
-        <button class="btn" onclick="revealIdentity()">Unlock Identity</button>
+        <div id="my-info" class="hidden-content">
+            <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 20px 0;">
+            <p><span class="info-tag">University:</span> University of Mosul</p>
+            <p><span class="info-tag">Major:</span> Software Engineering</p>
+            <p><span class="info-tag">Focus:</span> C++, Assembly, & Chess Engines</p>
+            <p><span class="info-tag">Interests:</span> Cosmology & Space-Time Physics</p>
+            <p style="margin-top: 20px; font-style: italic; opacity: 0.8;">"In the code of the universe, logic is the only gravity."</p>
+        </div>
     </div>
 
     <script>
-        function revealIdentity() {
-            const key = document.getElementById('secretKey').value;
-            const name = document.getElementById('main-name');
-            // كلمة السر هي اسمك بالإنجليزية
-            if (key === "Anas") {
-                name.innerText = "Anas Al-Taie";
-                name.style.color = "#FFD700";
-                document.getElementById('title-who').innerText = "Identity Confirmed";
-                alert("Access Granted: Welcome Anas!");
+        function checkKey() {
+            const key = document.getElementById('passkey').value;
+            if (key.toLowerCase() === "anas") {
+                document.getElementById('main-name').innerText = "Anas Al-Taie";
+                document.getElementById('main-name').style.color = "#fbbf24";
+                document.getElementById('sub-title').innerHTML = "System Status: <span style='color: #22c55e;'>Authorized</span>";
+                document.getElementById('lock-screen').style.display = "none";
+                document.getElementById('my-info').style.display = "block";
             } else {
-                alert("Access Denied: Wrong Key!");
+                alert("Access Denied! Incorrect Space-Time Coordinates.");
             }
         }
     </script>
